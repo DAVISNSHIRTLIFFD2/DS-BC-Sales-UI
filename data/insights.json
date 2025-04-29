@@ -1,0 +1,82 @@
+{
+  "salesTrendData": [
+    { "month": "Jan", "value": 6500000 },
+    { "month": "Feb", "value": 7200000 },
+    { "month": "Mar", "value": 6800000 },
+    { "month": "Apr", "value": 8500000 },
+    { "month": "May", "value": 9200000 },
+    { "month": "Jun", "value": 9800000 },
+    { "month": "Jul", "value": 10500000 },
+    { "month": "Aug", "value": 11200000 },
+    { "month": "Sep", "value": 11800000 },
+    { "month": "Oct", "value": 12500000 },
+    { "month": "Nov", "value": 13200000 },
+    { "month": "Dec", "value": 14000000 }
+  ],
+  "conversionFunnelData": [
+    { "name": "Leads", "value": 1200 },
+    { "name": "Qualified", "value": 850 },
+    { "name": "Proposals", "value": 420 },
+    { "name": "Negotiations", "value": 190 },
+    { "name": "Closed", "value": 120 }
+  ],
+  "leadSourceData": [
+    { "name": "Website", "value": 30 },
+    { "name": "Referrals", "value": 25 },
+    { "name": "Trade Shows", "value": 20 },
+    { "name": "Social Media", "value": 15 },
+    { "name": "Radio Ads", "value": 10 }
+  ],
+  "objectionData": [
+    {
+      "objection": "Price too high",
+      "count": 42,
+      "recommendation": "Emphasize long-term savings and ROI for solar solutions"
+    },
+    {
+      "objection": "Need more time",
+      "count": 38,
+      "recommendation": "Offer limited-time installation discount"
+    },
+    {
+      "objection": "Uncertain water quality",
+      "count": 27,
+      "recommendation": "Provide free water testing and treatment options"
+    },
+    {
+      "objection": "Current system works",
+      "count": 23,
+      "recommendation": "Highlight efficiency gains and reduced maintenance costs"
+    },
+    {
+      "objection": "Need approval",
+      "count": 18,
+      "recommendation": "Provide materials for community/board decision makers"
+    }
+  ],
+  "productPerformance": [
+    { "product": "Water Pumps", "sales": 4200000, "growth": 15 },
+    { "product": "Solar Solutions", "sales": 3800000, "growth": 28 },
+    { "product": "Water Treatment", "sales": 2900000, "growth": 12 },
+    { "product": "Borehole Drilling", "sales": 2500000, "growth": 18 },
+    { "product": "Irrigation Systems", "sales": 2100000, "growth": 22 },
+    { "product": "Generators", "sales": 1800000, "growth": 8 },
+    { "product": "Swimming Pools", "sales": 1200000, "growth": 5 }
+  ],
+  "regionalPerformance": [
+    { "region": "Nairobi", "sales": 5200000 },
+    { "region": "Central Kenya", "sales": 3800000 },
+    { "region": "Rift Valley", "sales": 3500000 },
+    { "region": "Coast", "sales": 2900000 },
+    { "region": "Western Kenya", "sales": 2400000 },
+    { "region": "Nyanza", "sales": 2100000 },
+    { "region": "Eastern Kenya", "sales": 1800000 },
+    { "region": "North Eastern", "sales": 800000 }
+  ],
+  "metrics": {
+    "conversionRate": { "value": "42.8%", "change": "+2.5%", "trend": "up" },
+    "leadsScored": { "value": "128", "change": "+12", "trend": "up" },
+    "responseTime": { "value": "1.2h", "change": "-0.3h", "trend": "up" },
+    "pipelineValue": { "value": "KES 12.5M", "change": "+KES 2.5M", "trend": "up" }
+  }
+}

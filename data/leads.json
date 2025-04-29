@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "name": "Nairobi County Government",
+    "contact": "Mwangi Njoroge",
+    "email": "mwangi.njoroge@nairobicounty.go.ke",
+    "phone": "+254 712 345 678",
+    "score": 92,
+    "status": "Hot Lead",
+    "lastContact": "2 hours ago",
+    "region": "Central Kenya",
+    "notes": "Interested in water treatment systems for public facilities",
+    "interests": ["Water Treatment Systems", "Generators"]
+  },
+  {
+    "id": 2,
+    "name": "Mwangi Irrigation Co-op",
+    "contact": "Achieng Otieno",
+    "email": "achieng@mwangiirrigation.co.ke",
+    "phone": "+254 723 456 789",
+    "score": 87,
+    "status": "Proposal Sent",
+    "lastContact": "Yesterday",
+    "region": "Western Kenya",
+    "notes": "Looking for solar water pumping solutions for 50-acre farm",
+    "interests": ["Solar Energy Solutions", "Water Pumps", "Irrigation Systems"]
+  },
+  {
+    "id": 3,
+    "name": "Kilimani Apartments Ltd",
+    "contact": "Mutiso Kilonzo",
+    "email": "mutiso@kilimani.co.ke",
+    "phone": "+254 734 567 890",
+    "score": 78,
+    "status": "Follow-up",
+    "lastContact": "2 days ago",
+    "region": "Nairobi",
+    "notes": "Interested in borehole drilling and water treatment for new apartment complex",
+    "interests": ["Borehole Drilling", "Water Treatment Systems"]
+  },
+  {
+    "id": 4,
+    "name": "Rift Valley Farms",
+    "contact": "Wanjiku Kamau",
+    "email": "wanjiku@rvfarms.co.ke",
+    "phone": "+254 745 678 901",
+    "score": 75,
+    "status": "New Lead",
+    "lastContact": "3 days ago",
+    "region": "Rift Valley",
+    "notes": "Needs irrigation systems for large-scale farming operation",
+    "interests": ["Irrigation Systems", "Water Pumps"]
+  },
+  {
+    "id": 5,
+    "name": "Mombasa Beach Resorts",
+    "contact": "Omar Hassan",
+    "email": "omar@mombasa-resorts.co.ke",
+    "phone": "+254 756 789 012",
+    "score": 68,
+    "status": "Nurturing",
+    "lastContact": "1 week ago",
+    "region": "Coast",
+    "notes": "Interested in swimming pool construction and maintenance for resort expansion",
+    "interests": ["Swimming Pool Construction", "Water Treatment Systems"]
+  },
+  {
+    "id": 6,
+    "name": "Kisumu Waterfront Development",
+    "contact": "Atieno Odhiambo",
+    "email": "atieno@kisumuwater.co.ke",
+    "phone": "+254 767 890 123",
+    "score": 65,
+    "status": "Qualified",
+    "lastContact": "5 days ago",
+    "region": "Nyanza",
+    "notes": "Looking for water pumps and treatment systems for lakeside development",
+    "interests": ["Water Pumps", "Water Treatment Systems"]
+  },
+  {
+    "id": 7,
+    "name": "Nakuru Municipal Council",
+    "contact": "Kipchoge Korir",
+    "email": "kipchoge@nakuru.go.ke",
+    "phone": "+254 778 901 234",
+    "score": 62,
+    "status": "New Lead",
+    "lastContact": "1 week ago",
+    "region": "Rift Valley",
+    "notes": "Interested in water treatment solutions for municipal supply",
+    "interests": ["Water Treatment Systems", "Generators"]
+  }
+]

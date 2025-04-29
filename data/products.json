@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "category": "Water Pumps",
+    "items": [
+      {
+        "id": 101,
+        "name": "Dayliff Centrifugal Pump",
+        "description": "High-performance centrifugal pumps for various applications",
+        "variants": ["DCP 50-32", "DCP 65-40", "DCP 80-50", "DCP 100-65"]
+      },
+      {
+        "id": 102,
+        "name": "Grundfos Submersible Pump",
+        "description": "Reliable submersible pumps for deep well applications",
+        "variants": ["SP 5A", "SP 8A", "SP 14A", "SP 30"]
+      },
+      {
+        "id": 103,
+        "name": "Lorentz Solar Pump",
+        "description": "Solar-powered pumping solutions for off-grid applications",
+        "variants": ["PS2-100", "PS2-1800", "PS2-4000"]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Solar Energy Solutions",
+    "items": [
+      {
+        "id": 201,
+        "name": "Solar Panel Array",
+        "description": "High-efficiency solar panels for energy generation",
+        "variants": ["5kW", "10kW", "25kW", "50kW"]
+      },
+      {
+        "id": 202,
+        "name": "Solar Inverter",
+        "description": "Converts DC power from solar panels to AC power",
+        "variants": ["3kW", "5kW", "10kW", "20kW"]
+      },
+      {
+        "id": 203,
+        "name": "Battery Storage System",
+        "description": "Energy storage for solar power systems",
+        "variants": ["5kWh", "10kWh", "20kWh", "50kWh"]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Water Treatment Systems",
+    "items": [
+      {
+        "id": 301,
+        "name": "Dayliff UV Sterilization System",
+        "description": "Eliminates bacteria and viruses from water",
+        "variants": ["UV10", "UV20", "UV40", "UV80"]
+      },
+      {
+        "id": 302,
+        "name": "Multi-stage Filtration Unit",
+        "description": "Removes sediment, chemicals, and contaminants",
+        "variants": ["MF100", "MF200", "MF500", "MF1000"]
+      },
+      {
+        "id": 303,
+        "name": "Reverse Osmosis System",
+        "description": "Advanced water purification for drinking water",
+        "variants": ["RO100", "RO250", "RO500", "RO1000"]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Generators",
+    "items": [
+      {
+        "id": 401,
+        "name": "Diesel Generator",
+        "description": "Reliable power generation for backup or primary use",
+        "variants": ["10kVA", "20kVA", "50kVA", "100kVA"]
+      },
+      {
+        "id": 402,
+        "name": "Petrol Generator",
+        "description": "Portable power generation for small applications",
+        "variants": ["2kVA", "5kVA", "8kVA"]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "category": "Irrigation Systems",
+    "items": [
+      {
+        "id": 501,
+        "name": "Drip Irrigation System",
+        "description": "Water-efficient irrigation for crops and gardens",
+        "variants": ["Small Scale", "Medium Scale", "Large Scale"]
+      },
+      {
+        "id": 502,
+        "name": "Sprinkler System",
+        "description": "Even water distribution for lawns and fields",
+        "variants": ["Fixed", "Rotating", "Oscillating"]
+      },
+      {
+        "id": 503,
+        "name": "Irrigation Controller",
+        "description": "Automated control of irrigation systems",
+        "variants": ["Basic", "Advanced", "Smart"]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "category": "Borehole Drilling and Equipment",
+    "items": [
+      {
+        "id": 601,
+        "name": "Borehole Drilling Service",
+        "description": "Professional drilling for water access",
+        "variants": ["Up to 100m", "100-200m", "200-300m", "300m+"]
+      },
+      {
+        "id": 602,
+        "name": "Borehole Casing",
+        "description": "Protective lining for boreholes",
+        "variants": ["4-inch", "6-inch", "8-inch"]
+      },
+      {
+        "id": 603,
+        "name": "Borehole Pump Package",
+        "description": "Complete pump system for boreholes",
+        "variants": ["Residential", "Commercial", "Agricultural"]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "category": "Swimming Pool Construction and Maintenance",
+    "items": [
+      {
+        "id": 701,
+        "name": "Swimming Pool Construction",
+        "description": "Custom pool design and construction",
+        "variants": ["Residential", "Commercial", "Olympic"]
+      },
+      {
+        "id": 702,
+        "name": "Pool Filtration System",
+        "description": "Keeps pool water clean and clear",
+        "variants": ["Sand Filter", "Cartridge Filter", "DE Filter"]
+      },
+      {
+        "id": 703,
+        "name": "Pool Maintenance Package",
+        "description": "Regular service to keep pools in top condition",
+        "variants": ["Basic", "Standard", "Premium"]
+      }
+    ]
+  }
+]

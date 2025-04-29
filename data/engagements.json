@@ -1,0 +1,176 @@
+{
+  "1": {
+    "leadId": 1,
+    "messages": [
+      {
+        "id": 1,
+        "sender": "customer",
+        "name": "Mwangi Njoroge",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "MN",
+        "content": "Hello, I'm interested in water treatment systems for several public facilities in Nairobi County. Can you provide some information on your solutions?",
+        "time": "10:32 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 2,
+        "sender": "user",
+        "name": "John Kamau",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "JK",
+        "content": "Hello Mr. Njoroge, thank you for your interest in Davis & Shirtliff water treatment solutions. We offer a range of systems suitable for public facilities. Could you share more details about the specific facilities and their water quality requirements?",
+        "time": "10:35 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 3,
+        "sender": "customer",
+        "name": "Mwangi Njoroge",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "MN",
+        "content": "We're looking to upgrade treatment systems at 5 public hospitals and 10 community centers. The current systems are outdated and not handling the water quality issues effectively. We're particularly concerned about bacterial contamination.",
+        "time": "10:40 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 4,
+        "sender": "user",
+        "name": "John Kamau",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "JK",
+        "content": "For hospitals and community centers with bacterial contamination concerns, I would recommend our Dayliff UV Sterilization systems combined with our multi-stage filtration units. These are specifically designed for high-capacity public facilities and provide comprehensive protection against bacteria and other contaminants. Would you be interested in a site assessment to determine the exact specifications needed?",
+        "time": "10:45 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 5,
+        "sender": "customer",
+        "name": "Mwangi Njoroge",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "MN",
+        "content": "Yes, a site assessment would be helpful. We also need to know about maintenance requirements and costs. What kind of timeline would we be looking at for installation?",
+        "time": "10:50 AM",
+        "date": "Apr 14, 2025"
+      }
+    ],
+    "history": [
+      { "date": "Apr 12, 2025", "action": "Email sent", "details": "Initial outreach" },
+      { "date": "Apr 13, 2025", "action": "Email received", "details": "Expressed interest" },
+      { "date": "Apr 14, 2025", "action": "Meeting scheduled", "details": "Product discussion" }
+    ],
+    "aiSuggestions": [
+      "Mention our service contract options that include quarterly maintenance visits",
+      "Highlight our experience with similar installations at Kenyatta National Hospital",
+      "Offer a demonstration of our water quality testing procedures"
+    ]
+  },
+  "2": {
+    "leadId": 2,
+    "messages": [
+      {
+        "id": 1,
+        "sender": "customer",
+        "name": "Achieng Otieno",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "AO",
+        "content": "Hi there! I'm interested in learning more about your solar water pumping solutions. Our cooperative is looking to upgrade our irrigation system.",
+        "time": "10:32 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 2,
+        "sender": "user",
+        "name": "John Kamau",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "JK",
+        "content": "Hello Achieng, thanks for reaching out! I'd be happy to tell you more about our solar water pumping solutions. Could you share a bit about your current setup and what challenges you're facing?",
+        "time": "10:35 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 3,
+        "sender": "customer",
+        "name": "Achieng Otieno",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "AO",
+        "content": "We're currently using diesel pumps that are about 5 years old. The main issues we're facing are high fuel costs and maintenance. We have about 50 acres that need irrigation.",
+        "time": "10:40 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 4,
+        "sender": "user",
+        "name": "John Kamau",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "JK",
+        "content": "I understand the challenges with diesel pumps. Our solar water pumping solutions are designed specifically to reduce operational costs and offer reliable performance. For a farm of your size, I'd recommend our Lorentz PS2-4000 system which includes solar panels, controller, and pump suitable for your acreage.",
+        "time": "10:45 AM",
+        "date": "Apr 14, 2025"
+      },
+      {
+        "id": 5,
+        "sender": "customer",
+        "name": "Achieng Otieno",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "AO",
+        "content": "That sounds promising. What kind of installation timeline are we looking at? And do you offer any maintenance services?",
+        "time": "10:50 AM",
+        "date": "Apr 14, 2025"
+      }
+    ],
+    "history": [
+      { "date": "Apr 12, 2025", "action": "Email sent", "details": "Initial outreach" },
+      { "date": "Apr 13, 2025", "action": "Email received", "details": "Expressed interest" },
+      { "date": "Apr 14, 2025", "action": "Meeting scheduled", "details": "Product demo" }
+    ],
+    "aiSuggestions": [
+      "Based on their acreage, recommend our financing options for larger solar installations",
+      "Mention our 2-year maintenance package that includes quarterly servicing",
+      "Offer a site visit to assess their specific irrigation requirements and soil conditions"
+    ]
+  },
+  "3": {
+    "leadId": 3,
+    "messages": [
+      {
+        "id": 1,
+        "sender": "customer",
+        "name": "Mutiso Kilonzo",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "MK",
+        "content": "Hello, I'm looking for information on borehole drilling services for our new apartment complex in Kilimani.",
+        "time": "2:15 PM",
+        "date": "Apr 12, 2025"
+      },
+      {
+        "id": 2,
+        "sender": "user",
+        "name": "John Kamau",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "JK",
+        "content": "Hello Mr. Kilonzo, thank you for your interest in our borehole drilling services. Davis & Shirtliff offers comprehensive borehole solutions including drilling, casing, and pump installation. Could you share more details about your apartment complex and water requirements?",
+        "time": "2:20 PM",
+        "date": "Apr 12, 2025"
+      },
+      {
+        "id": 3,
+        "sender": "customer",
+        "name": "Mutiso Kilonzo",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "initials": "MK",
+        "content": "We're developing a 120-unit apartment complex with plans for landscaped gardens. We need reliable water supply independent of city water. We're also interested in water treatment systems for the borehole water.",
+        "time": "2:30 PM",
+        "date": "Apr 12, 2025"
+      }
+    ],
+    "history": [
+      { "date": "Apr 10, 2025", "action": "Phone call", "details": "Initial inquiry" },
+      { "date": "Apr 12, 2025", "action": "Email received", "details": "Request for information" }
+    ],
+    "aiSuggestions": [
+      "Recommend our complete borehole package that includes geological survey, drilling, and equipment installation",
+      "Highlight our experience with similar projects in the Kilimani area",
+      "Suggest our water quality testing service to determine appropriate treatment systems"
+    ]
+  }
+}

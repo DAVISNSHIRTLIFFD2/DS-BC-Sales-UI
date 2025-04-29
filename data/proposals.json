@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "name": "Mwangi Irrigation Co-op - Solar Water Pumping",
+    "leadId": 2,
+    "client": "Mwangi Irrigation Co-op",
+    "contact": "Achieng Otieno",
+    "date": "Apr 14, 2025",
+    "status": "Sent",
+    "value": "KES 1,250,000",
+    "products": [
+      "Lorentz PS2-4000 Solar Pump System",
+      "25kW Solar Panel Array",
+      "Dayliff Control System with Remote Monitoring"
+    ],
+    "services": [
+      "Site Assessment and System Design",
+      "Complete Installation and Commissioning",
+      "2-Year Maintenance Package with Quarterly Servicing"
+    ],
+    "notes": "Customized solution for 50-acre irrigation with projected 40% reduction in operational costs compared to current diesel system."
+  },
+  {
+    "id": 2,
+    "name": "Nairobi County Government - Water Treatment",
+    "leadId": 1,
+    "client": "Nairobi County Government",
+    "contact": "Mwangi Njoroge",
+    "date": "Apr 12, 2025",
+    "status": "Draft",
+    "value": "KES 8,500,000",
+    "products": [
+      "Dayliff UV Sterilization Systems (15 units)",
+      "Multi-stage Filtration Units (15 units)",
+      "Water Quality Monitoring Systems (15 units)"
+    ],
+    "services": [
+      "Site Assessment for 15 Facilities",
+      "Installation and Commissioning",
+      "Staff Training on System Operation",
+      "3-Year Comprehensive Maintenance Contract"
+    ],
+    "notes": "Comprehensive water treatment solution for 5 public hospitals and 10 community centers with focus on bacterial contamination control."
+  },
+  {
+    "id": 3,
+    "name": "Kilimani Apartments - Borehole Drilling",
+    "leadId": 3,
+    "client": "Kilimani Apartments Ltd",
+    "contact": "Mutiso Kilonzo",
+    "date": "Apr 10, 2025",
+    "status": "Viewed",
+    "value": "KES 4,200,000",
+    "products": [
+      "Borehole Drilling and Casing (200m depth)",
+      "Grundfos Submersible Pump",
+      "10,000L Storage Tank System",
+      "Dayliff Water Treatment Unit"
+    ],
+    "services": [
+      "Geological Survey",
+      "Drilling and Casing Installation",
+      "Pump Installation and Commissioning",
+      "Water Quality Testing"
+    ],
+    "notes": "Complete borehole solution for 120-unit apartment complex with landscaped gardens, providing independent water supply with appropriate treatment."
+  },
+  {
+    "id": 4,
+    "name": "Rift Valley Farms - Irrigation Systems",
+    "leadId": 4,
+    "client": "Rift Valley Farms",
+    "contact": "Wanjiku Kamau",
+    "date": "Apr 8, 2025",
+    "status": "Accepted",
+    "value": "KES 3,500,000",
+    "products": [
+      "Drip Irrigation System for 200 acres",
+      "Dayliff Centrifugal Pumps (4 units)",
+      "Filtration and Fertigation Units",
+      "Irrigation Controllers with Weather Sensors"
+    ],
+    "services": [
+      "Irrigation System Design",
+      "Installation and Commissioning",
+      "Operator Training",
+      "1-Year Maintenance Contract"
+    ],
+    "notes": "High-efficiency irrigation system designed for water conservation and optimal crop yield, with smart controls for automated operation."
+  }
+]
