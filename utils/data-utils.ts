@@ -8,17 +8,16 @@ import productsData from "@/data/products.json"
 
 // Type definitions
 export interface Lead {
-  id: number
-  name: string
-  contact: string
-  email: string
-  phone: string
-  score: number
-  status: string
-  lastContact: string
-  region: string
-  notes: string
-  interests: string[]
+  _id: string;
+  name: string;
+  contact: string;
+  email: string;
+  region: string;
+  status: string;
+  score: number;
+  lastContact: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Engagement {
@@ -67,39 +66,75 @@ export interface Product {
 }
 
 // Fetch all leads
-export function getLeads(): Lead[] {
-  // TODO: Replace with API call
-  return leadsData
+export async function getLeads(): Promise<Lead[]> {
+  try {
+    const response = await fetch('/api/leads');
+    if (!response.ok) throw new Error('Failed to fetch leads');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching leads:', error);
+    return [];
+  }
 }
 
 // Fetch a specific lead by ID
-export function getLeadById(id: number): Lead | undefined {
-  // TODO: Replace with API call
-  return leadsData.find((lead) => lead.id === id)
+export async function getLeadById(id: string): Promise<Lead | undefined> {
+  try {
+    const response = await fetch(`/api/leads?id=${id}`);
+    if (!response.ok) throw new Error('Failed to fetch lead');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching lead:', error);
+    return undefined;
+  }
 }
 
 // Fetch engagements for a specific lead
-export function getEngagementByLeadId(leadId: number): Engagement | undefined {
-  // TODO: Replace with API call
-  return engagementsData[leadId.toString() as keyof typeof engagementsData]
+export async function getEngagementByLeadId(leadId: string): Promise<Engagement | undefined> {
+  try {
+    const response = await fetch(`/api/engagements?leadId=${leadId}`);
+    if (!response.ok) throw new Error('Failed to fetch engagement');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching engagement:', error);
+    return undefined;
+  }
 }
 
 // Fetch all proposals
-export function getProposals(): Proposal[] {
-  // TODO: Replace with API call
-  return proposalsData
+export async function getProposals(): Promise<Proposal[]> {
+  try {
+    const response = await fetch('/api/proposals');
+    if (!response.ok) throw new Error('Failed to fetch proposals');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching proposals:', error);
+    return [];
+  }
 }
 
 // Fetch a specific proposal by ID
-export function getProposalById(id: number): Proposal | undefined {
-  // TODO: Replace with API call
-  return proposalsData.find((proposal) => proposal.id === id)
+export async function getProposalById(id: string): Promise<Proposal | undefined> {
+  try {
+    const response = await fetch(`/api/proposals?id=${id}`);
+    if (!response.ok) throw new Error('Failed to fetch proposal');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching proposal:', error);
+    return undefined;
+  }
 }
 
 // Fetch proposals for a specific lead
-export function getProposalsByLeadId(leadId: number): Proposal[] {
-  // TODO: Replace with API call
-  return proposalsData.filter((proposal) => proposal.leadId === leadId)
+export async function getProposalsByLeadId(leadId: string): Promise<Proposal[]> {
+  try {
+    const response = await fetch(`/api/proposals?leadId=${leadId}`);
+    if (!response.ok) throw new Error('Failed to fetch proposals');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching proposals:', error);
+    return [];
+  }
 }
 
 // Fetch insights data

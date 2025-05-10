@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { ProposalsPage } from "@/components/proposals-page"
-import { getLeadById, getProposals, getProposalById } from "@/utils/data-utils"
+import { getLeadById, getProposals, getProposalById, type Proposal } from "@/utils/data-utils"
 import { useAppContext } from "@/context/app-context"
 import { useRouter, useSearchParams } from "next/navigation"
 
@@ -13,22 +13,22 @@ export default function Proposals() {
   const leadId = searchParams.get("leadId")
   const proposalId = searchParams.get("proposalId")
 
-  useEffect(() => {
-    // If leadId is provided in URL but no lead is selected, fetch the lead
-    if (leadId && !selectedLead) {
-      const lead = getLeadById(Number(leadId))
-      if (lead) {
-        setSelectedLead(lead)
-      }
-    }
+  const [proposals, setProposals] = useState<Proposal[]>([])
 
-    // If proposalId is provided in URL but no proposal is selected, fetch the proposal
-    if (proposalId && !selectedProposal) {
-      const proposal = getProposalById(Number(proposalId))
-      if (proposal) {
-        setSelectedProposal(proposal)
+  useEffect(() => {
+    async function fetchData() {
+      if (leadId && !selectedLead) {
+        const lead = await getLeadById(leadId)
+        if (lead) setSelectedLead(lead)
       }
+      if (proposalId && !selectedProposal) {
+        const proposal = await getProposalById(proposalId)
+        if (proposal) setSelectedProposal(proposal)
+      }
+      const allProposals = await getProposals()
+      setProposals(allProposals)
     }
+    fetchData()
   }, [leadId, proposalId, selectedLead, selectedProposal, setSelectedLead, setSelectedProposal])
 
   // Get the activeTab from URL if provided
@@ -36,16 +36,10 @@ export default function Proposals() {
   const templateId = searchParams.get("templateId")
 
   useEffect(() => {
-    // If activeTab is provided in URL, set it in the component
     if (activeTab) {
-      // This will be used in the ProposalsPage component
       console.log("Setting active tab to:", activeTab)
-      // You can pass this to the ProposalsPage component
     }
   }, [activeTab])
-
-  // Fetch all proposals
-  const proposals = getProposals()
 
   return (
     <ProposalsPage

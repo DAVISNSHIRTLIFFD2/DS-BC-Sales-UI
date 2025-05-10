@@ -16,6 +16,8 @@ import { type Lead, type Proposal, getLeads, getProducts } from "@/utils/data-ut
 import { useState, useEffect } from "react"
 import { generateProposalPDF } from "@/utils/pdf-utils"
 import { DavisShirtliffProposalTemplate } from "@/components/davis-shirtliff-proposal-template"
+import leadsData from "@/data/leads.json";
+import proposalsData from "@/data/proposals.json";
 
 interface ProposalsPageProps {
   lead?: Lead | null
@@ -29,7 +31,7 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
   const router = useRouter()
   const { setSelectedLead, setSelectedProposal } = useAppContext()
   const [activeTab, setActiveTab] = useState(props.activeTab || (lead ? "create" : "manage"))
-  const [selectedClient, setSelectedClient] = useState(lead?.id.toString() || "")
+  const [selectedClient, setSelectedClient] = useState(lead?._id.toString() || "")
   const [selectedTemplate, setSelectedTemplate] = useState("")
   const [selectedProduct, setSelectedProduct] = useState("")
   const [estimatedValue, setEstimatedValue] = useState("")
@@ -38,7 +40,7 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
   const [isGenerating, setIsGenerating] = useState(false)
 
   // Get all leads for the client dropdown
-  const leads = getLeads()
+  const leads = leadsData
 
   // Get all products
   const products = getProducts()
@@ -74,7 +76,7 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
     setSelectedClient(value)
     const selectedLead = leads.find((l) => l.id.toString() === value)
     if (selectedLead) {
-      setSelectedLead(selectedLead)
+      setSelectedLead({ ...selectedLead, _id: selectedLead.id.toString() })
     }
   }
 
@@ -83,7 +85,7 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
     setSelectedProposal(proposal)
     const proposalLead = leads.find((l) => l.id === proposal.leadId)
     if (proposalLead) {
-      setSelectedLead(proposalLead)
+      setSelectedLead({ ...proposalLead, _id: proposalLead.id.toString() })
     }
     router.push(`/proposals?proposalId=${proposal.id}&leadId=${proposal.leadId}`)
   }
@@ -104,13 +106,17 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
 
       // Create proposal data
       const proposalData = {
-        clientName: selectedLead.name,
-        clientContact: selectedLead.contact,
+        id: 0,
+        name: selectedLead.name,
+        leadId: selectedLead.id,
+        client: selectedLead.name,
+        contact: selectedLead.contact,
         date: new Date().toLocaleDateString(),
+        status: "Draft",
+        value: estimatedValue || "KES 1,250,000",
         products: ["Lorentz PS2-4000 Solar Pump System", "25kW Solar Panel Array"],
         services: ["Site Assessment and System Design", "Complete Installation and Commissioning"],
-        totalValue: estimatedValue || "KES 1,250,000",
-        notes: notes || "Customized solution with projected 40% reduction in operational costs.",
+        notes: notes || "Customized solution with projected 40% reduction in operational costs."
       }
 
       // Generate PDF
@@ -134,6 +140,22 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
     }
   }, [props.templateId])
 
+  // Define proposalData in the component scope
+  const selectedLeadObj = leads.find((l) => l.id.toString() === selectedClient);
+  const proposalData = selectedLeadObj ? {
+    id: 0,
+    name: selectedLeadObj.name,
+    leadId: selectedLeadObj.id, // always a number
+    client: selectedLeadObj.name,
+    contact: selectedLeadObj.contact,
+    date: new Date().toLocaleDateString(),
+    status: "Draft",
+    value: estimatedValue || "KES 1,250,000",
+    products: ["Lorentz PS2-4000 Solar Pump System", "25kW Solar Panel Array"],
+    services: ["Site Assessment and System Design", "Complete Installation and Commissioning"],
+    notes: notes || "Customized solution with projected 40% reduction in operational costs."
+  } : undefined;
+
   return (
     <div className="flex flex-col p-6 space-y-6">
       <PageHeader
@@ -151,7 +173,7 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
         }
       />
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={v => setActiveTab(v as "create" | "manage")}>
         <TabsList className="grid w-full max-w-md grid-cols-2">
           <TabsTrigger value="create">Create Proposal</TabsTrigger>
           <TabsTrigger value="manage">Manage Proposals</TabsTrigger>
@@ -172,7 +194,7 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
                       <SelectValue placeholder="Select a client" />
                     </SelectTrigger>
                     <SelectContent>
-                      {leads.map((lead) => (
+                      {Array.isArray(leads) && leads.map((lead) => (
                         <SelectItem key={lead.id} value={lead.id.toString()}>
                           {lead.name}
                         </SelectItem>
@@ -257,17 +279,9 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
                     <iframe src={pdfUrl} className="h-full w-full" title="Proposal Preview" />
                   ) : selectedClient ? (
                     <div className="h-full w-full overflow-auto">
-                      <DavisShirtliffProposalTemplate
-                        data={{
-                          clientName: leads.find((l) => l.id.toString() === selectedClient)?.name || "",
-                          clientContact: leads.find((l) => l.id.toString() === selectedClient)?.contact || "",
-                          date: new Date().toLocaleDateString(),
-                          products: ["Lorentz PS2-4000 Solar Pump System", "25kW Solar Panel Array"],
-                          services: ["Site Assessment and System Design", "Complete Installation and Commissioning"],
-                          totalValue: estimatedValue || "KES 1,250,000",
-                          notes: notes || "Customized solution with projected 40% reduction in operational costs.",
-                        }}
-                      />
+                      {proposalData && (
+                        <DavisShirtliffProposalTemplate data={proposalData} />
+                      )}
                     </div>
                   ) : (
                     <div className="text-center">
@@ -323,32 +337,37 @@ export function ProposalsPage({ lead, proposal, proposals, ...props }: Proposals
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {(proposals || []).map((proposal) => (
-                  <div key={proposal.id} className="flex items-center justify-between rounded-lg border p-4">
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
-                        <FileText className="h-5 w-5 text-slate-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">{proposal.name}</h4>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>{proposal.date}</span>
-                          <span>•</span>
-                          <span>{proposal.value}</span>
+                {Array.isArray(proposalsData) && proposalsData
+                  .filter((proposal) => !isNaN(Number(proposal.leadId)))
+                  .map((proposal) => {
+                    const normalizedProposal = { ...proposal, leadId: Number(proposal.leadId) };
+                    return (
+                      <div key={normalizedProposal.id} className="flex items-center justify-between rounded-lg border p-4">
+                        <div className="flex items-center gap-4">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
+                            <FileText className="h-5 w-5 text-slate-600" />
+                          </div>
+                          <div>
+                            <h4 className="font-medium">{normalizedProposal.name}</h4>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <span>{normalizedProposal.date}</span>
+                              <span>•</span>
+                              <span>{normalizedProposal.value}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          {getStatusBadge(normalizedProposal.status)}
+                          <Button variant="ghost" size="sm" onClick={() => handleViewProposal(normalizedProposal)}>
+                            View
+                          </Button>
+                          <Button variant="ghost" size="sm">
+                            Edit
+                          </Button>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      {getStatusBadge(proposal.status)}
-                      <Button variant="ghost" size="sm" onClick={() => handleViewProposal(proposal)}>
-                        View
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        Edit
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+                    );
+                  })}
               </div>
             </CardContent>
           </Card>

@@ -32,6 +32,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useRouter } from "next/navigation"
 import { useAppContext } from "@/context/app-context"
 import type { Lead } from "@/utils/data-utils"
+import { getLeads } from "@/utils/data-utils"
 import { useState, useEffect } from "react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
@@ -53,6 +54,44 @@ const leadStatusOptions = [
   "Hot Lead",
 ]
 
+const AiSuggestion = ({ lead }: { lead: Lead }) => {
+  const [suggestion, setSuggestion] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchSuggestion = async () => {
+      try {
+        const response = await fetch('/api/leads/suggest', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            score: lead.score,
+            status: lead.status,
+            lastContact: lead.lastContact,
+          }),
+        });
+
+        if (!response.ok) throw new Error('Failed to get AI suggestion');
+        const data = await response.json();
+        setSuggestion(data.suggestion);
+      } catch (error) {
+        console.error('Error getting AI suggestion:', error);
+      }
+    };
+
+    fetchSuggestion();
+  }, [lead]);
+
+  if (!suggestion) return null;
+
+  return (
+    <div className="text-xs text-blue-600 italic">
+      Suggestion: Move to {suggestion}
+    </div>
+  );
+};
+
 export function LeadsPage({ leads }: LeadsPageProps) {
   const router = useRouter()
   const { setSelectedLead } = useAppContext()
@@ -64,17 +103,20 @@ export function LeadsPage({ leads }: LeadsPageProps) {
 
   // Initialize lead data with the provided leads
   useEffect(() => {
-    if (leads && leads.length > 0) {
-      setLeadData(leads)
-      setFilteredLeads(leads)
-      setIsLoading(false)
-    } else {
-      setIsLoading(false)
-      if (!leads) {
-        setHasError(true)
+    const fetchLeads = async () => {
+      try {
+        const data = await getLeads();
+        setLeadData(data);
+        setFilteredLeads(data);
+      } catch (error) {
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
       }
-    }
-  }, [leads])
+    };
+
+    fetchLeads();
+  }, []);
 
   // Function to get badge variant based on status
   const getStatusBadge = (status: string) => {
@@ -107,13 +149,13 @@ export function LeadsPage({ leads }: LeadsPageProps) {
   // Handle engage button click
   const handleEngageLead = (lead: Lead) => {
     setSelectedLead(lead)
-    router.push(`/engagements?leadId=${lead.id}`)
+    router.push(`/engagements?leadId=${lead._id}`)
   }
 
   // Handle send proposal button click
   const handleSendProposal = (lead: Lead) => {
     setSelectedLead(lead)
-    router.push(`/proposals?leadId=${lead.id}`)
+    router.push(`/proposals?leadId=${lead._id}`)
   }
 
   // Handle search
@@ -137,46 +179,80 @@ export function LeadsPage({ leads }: LeadsPageProps) {
     setFilteredLeads(filtered)
   }
 
-  // Handle status change
-  const handleStatusChange = (leadId: number, newStatus: string) => {
-    // Update the lead status in the state
-    const updatedLeads = leadData.map((lead) => (lead.id === leadId ? { ...lead, status: newStatus } : lead))
-
-    setLeadData(updatedLeads)
-
-    // Also update filtered leads if needed
-    if (searchTerm) {
-      const updatedFiltered = filteredLeads.map((lead) => (lead.id === leadId ? { ...lead, status: newStatus } : lead))
-      setFilteredLeads(updatedFiltered)
-    } else {
-      setFilteredLeads(updatedLeads)
-    }
-  }
-
   // Get AI suggestion for lead status
-  const getAiSuggestion = (lead: Lead): string | null => {
-    // This would normally come from an AI model, but for now we'll use some simple logic
-    if (lead.score > 90) return "Hot Lead"
-    if (lead.score > 80 && lead.status === "New Lead") return "Qualified"
-    if (lead.score > 70 && lead.status === "Qualified") return "Proposal Sent"
-    if (lead.status === "Proposal Sent" && lead.lastContact.includes("day")) return "Follow-up"
-    return null
-  }
+  const getAiSuggestion = async (lead: Lead): Promise<string | null> => {
+    try {
+      const response = await fetch('/api/leads/suggest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          score: lead.score,
+          status: lead.status,
+          lastContact: lead.lastContact,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to get AI suggestion');
+      const data = await response.json();
+      return data.suggestion;
+    } catch (error) {
+      console.error('Error getting AI suggestion:', error);
+      return null;
+    }
+  };
+
+  // Handle status change
+  const handleStatusChange = async (leadId: string, newStatus: string) => {
+    try {
+      const response = await fetch(`/api/leads?id=${leadId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) throw new Error('Failed to update lead status');
+      const updatedLead = await response.json();
+
+      // Update the lead status in the state
+      const updatedLeads = leadData.map((lead) => 
+        lead._id === leadId ? { ...lead, status: newStatus } : lead
+      );
+
+      setLeadData(updatedLeads);
+
+      // Also update filtered leads if needed
+      if (searchTerm) {
+        const updatedFiltered = filteredLeads.map((lead) => 
+          lead._id === leadId ? { ...lead, status: newStatus } : lead
+        );
+        setFilteredLeads(updatedFiltered);
+      } else {
+        setFilteredLeads(updatedLeads);
+      }
+    } catch (error) {
+      console.error('Error updating lead status:', error);
+    }
+  };
 
   // Refresh data
-  const refreshData = () => {
-    setIsLoading(true)
-    setHasError(false)
+  const refreshData = async () => {
+    setIsLoading(true);
+    setHasError(false);
 
-    // Simulate API call
-    setTimeout(() => {
-      if (leads) {
-        setLeadData(leads)
-        setFilteredLeads(leads)
-      }
-      setIsLoading(false)
-    }, 1000)
-  }
+    try {
+      const data = await getLeads();
+      setLeadData(data);
+      setFilteredLeads(data);
+    } catch (error) {
+      setHasError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col p-6 space-y-6">
@@ -283,7 +359,7 @@ export function LeadsPage({ leads }: LeadsPageProps) {
                 <TableBody>
                   {filteredLeads.length > 0 ? (
                     filteredLeads.map((lead) => (
-                      <TableRow key={lead.id}>
+                      <TableRow key={lead._id}>
                         <TableCell>
                           <div className="font-medium">{lead.name}</div>
                         </TableCell>
@@ -312,7 +388,7 @@ export function LeadsPage({ leads }: LeadsPageProps) {
                                       {leadStatusOptions.map((status) => (
                                         <DropdownMenuItem
                                           key={status}
-                                          onClick={() => handleStatusChange(lead.id, status)}
+                                          onClick={() => handleStatusChange(lead._id, status)}
                                         >
                                           {status}
                                         </DropdownMenuItem>
@@ -327,11 +403,9 @@ export function LeadsPage({ leads }: LeadsPageProps) {
                             </Tooltip>
                           </TooltipProvider>
 
-                          {getAiSuggestion(lead) && (
-                            <div className="mt-1 text-xs text-blue-600 italic">
-                              Suggestion: Move to {getAiSuggestion(lead)}
-                            </div>
-                          )}
+                          <div className="mt-1">
+                            <AiSuggestion lead={lead} />
+                          </div>
                         </TableCell>
                         <TableCell>{lead.lastContact}</TableCell>
                         <TableCell>{lead.region}</TableCell>

@@ -63,7 +63,7 @@ export function DashboardPage({ leads, insights }: DashboardPageProps) {
   // Handle engage button click
   const handleEngageLead = (lead: Lead) => {
     setSelectedLead(lead)
-    router.push(`/engagements?leadId=${lead.id}`)
+    router.push(`/engagements?leadId=${lead._id}`)
   }
 
   // Handle view all leads click

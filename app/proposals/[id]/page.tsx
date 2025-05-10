@@ -1,5 +1,7 @@
 import { ProposalsPage } from "@/components/proposals-page"
+import proposalsData from "@/data/proposals.json"
 
 export default function ProposalDetail({ params }: { params: { id: string } }) {
-  return <ProposalsPage proposalId={Number.parseInt(params.id)} />
+  const proposal = proposalsData.find((p) => p.id === Number(params.id));
+  return <ProposalsPage proposal={proposal} />
 }
